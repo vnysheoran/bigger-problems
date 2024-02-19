@@ -1,10 +1,22 @@
 const sampleMatrix = require("./sample_matrix.json");
+const {numberWithCommas} = require("./utils");
 
 function matrixMultiplication(matA, matB) {
-    let result = [];
+    const result = [];
     const colB = matB[0].length;
     const rowA = matA.length;
     let numLoops = 0;
+
+    if (matA[0].length !== matB.length) {
+        return { result: null, numLoops: 0 };
+    }
+    for (let i = 0; i < matA.length; i++) {
+        result.push([]);
+        for (let j = 0; j < matB[0].length; j++) {
+            result[i].push(0);
+            numLoops++;
+        }
+    }
 
     for (let i = 0; i < rowA; i++) {
         if (!matA[i]) {
@@ -19,12 +31,6 @@ function matrixMultiplication(matA, matB) {
                 } else {
                     break;
                 }
-            }
-            if (!result[i]) {
-                result[i] = [];
-            }
-            if (!result[i][c]) {
-                result[i][c] = 0;
             }
             result[i][c] = el;
         }
@@ -43,5 +49,5 @@ function matrixMultiplication(matA, matB) {
     const r = matrixMultiplication(matrix1, matrix2);
     const endTime = performance.now();
     // console.log('result: ', r.result);
-    console.log(`matrix multiplication of ${matrix1.length} length took ${endTime - startTime} milliseconds with ${r.numLoops} loops \n`);
+    console.log(`matrix multiplication of ${matrix1.length} length took ${endTime - startTime} milliseconds with ${numberWithCommas(r.numLoops)} loops \n`);
 })();

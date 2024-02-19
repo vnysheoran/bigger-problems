@@ -9,6 +9,8 @@
   "author": "Vinay Kumar",
   "license": "ISC",
   "dependencies": {
+    "@tensorflow/tfjs": "^4.17.0",
+    "ljson": "^2.1.0",
     "mathjs": "^12.3.2"
   }
 }

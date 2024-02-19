@@ -1,6 +1,7 @@
 // This is a regular method
 const sample = require('./sample');
 const sampleMatrix = require('./sample_matrix.json');
+const {numberWithCommas} = require("./utils");
 
 // Matrix multiplication
 function multiplyMatrices(matA, matB) {
@@ -8,7 +9,7 @@ function multiplyMatrices(matA, matB) {
     let numLoopsOut = 0;
     // Check if the matrices are compatible for multiplication.
     if (matA[0].length !== matB.length) {
-        return null;
+        return { result: null, numLoops: 0 };
     }
 
     // Initialize the resulting product matrix.
@@ -58,5 +59,5 @@ function multiplyMatrices(matA, matB) {
     const startTime = performance.now();
     const r = multiplyMatrices(matrix1, matrix2);
     const endTime = performance.now();
-    console.log(`matrix multiplication of ${matrix1.length} length took ${endTime - startTime} milliseconds with ${r.numLoops} loops \n`);
+    console.log(`matrix multiplication of ${matrix1.length} length took ${endTime - startTime} milliseconds with ${numberWithCommas(r.numLoops)} loops \n`);
 })();
